@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'category',
     'accounts',
+    'store',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,8 @@ STATICFILES_DIRS = [
 #media files config
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
+
+
 
 
 # Default primary key field type
