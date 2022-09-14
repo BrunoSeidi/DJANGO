@@ -31,8 +31,6 @@ def add_cart(request, product_id):
             cart = cart,
         )
         cart_item.save()
-    return HttpResponse(cart_item.quantity)
-    exit()
     return redirect('cart')
 
 
@@ -44,6 +42,8 @@ def cart(request, total = 0, quantity = 0, cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
+        tax = (2 * total)/100
+        grand_total = total + tax
     except CartItem.DoesNotExist:
         pass
     
@@ -51,6 +51,8 @@ def cart(request, total = 0, quantity = 0, cart_items=None):
         "total": total,
         "quantity": quantity,
         "cart_items": cart_items,
+        "tax": tax,
+        "grand_total":grand_total,
     }
 
     return render(request, 'store/cart.html', context)
