@@ -6,7 +6,7 @@ from .models import Cart, CartItem
 from store.models import Product
 
 # Create your views here.
-def _cart_id(request):
+def _cart_id(request): #pegar id da sessão
     cart = request.session.session_key
     if not cart:
         cart = request.session.create()
