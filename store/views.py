@@ -47,4 +47,11 @@ def product_detail(request, category_slug, product_slug):
     return render(request,'store/product_detail.html', context)
 
 def search(request):
-    return HttpResponse('Search page')
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            products = Product.objects.order_by('-created_date').filter(description__icontains=keyword)
+        context = {
+            'products': products,
+        }
+    return render(request, 'store/store.html', context)
