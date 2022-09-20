@@ -5,8 +5,11 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
     <div class="container">
-        <h2 class="title-page">Our Store</h2>
-        
+        {% if 'search' in request.path %}
+        <h2 class="title-page">Search Result</h2>
+        {% else %}
+            <h2 class="title-page">Our Store</h2>
+        {% endif %}
     </div> <!-- container //  -->
     </section>
     <!-- ========================= SECTION INTRO END// ========================= -->
@@ -78,7 +81,7 @@
                     <h6 class="title">Price range </h6>
                 </a>
             </header>
-            <div class="filter-content collapse show" id="collapse_3" style="">
+            <div class="filter-content collapse show" id="collapse_3">
                 <div class="card-body">
                     
                     <div class="form-row">
@@ -126,6 +129,7 @@
     </header><!-- sect-heading -->
     
     <div class="row">
+        {% if products %}
         {% for product in products %}
         <div class="col-md-4">
             <figure class="card card-product-grid">
@@ -144,6 +148,11 @@
             </figure>
         </div> <!-- col.// -->
         {% endfor %}
+        {% else %}
+        <div>
+            <h2>No result found</h2>
+        </div>
+        {% endif  %}
     </div> <!-- row end.// -->
     
     
